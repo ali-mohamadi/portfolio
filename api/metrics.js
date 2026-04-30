@@ -242,9 +242,9 @@ export default async function handler(req) {
         headers: { "content-type": "application/json" },
       });
     }
-    try {
-      const cleanPath = pathname.slice(INGEST_ROUTE.length) || "/";
-      return await forwardRequest(req, cleanPath);
+        try {
+      // FIX: Forward the full pathname (which includes /p4r34m) to your server
+      return await forwardRequest(req, pathname);
     } catch (err) {
       console.error("relay error:", err);
       return new Response(JSON.stringify({ error: "bad gateway" }), {
